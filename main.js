@@ -2,6 +2,7 @@ const form = document.querySelector('#todoForm')
 const input = document.querySelector('#todoInput')
 const list = document.querySelector('#todoList');
 let todoItems = []
+const editButton = `<button class="editButton">edit</button>`
 
 form.addEventListener('submit', event => {
     event.preventDefault();  //prevents page from refreshing on enter
@@ -36,9 +37,29 @@ function renderItems(todoItems) {
         li.innerHTML = `
             <input type="checkbox" class="checkbox" ${checked}> 
             ${item.name}
+            ${editButton}
         `;
         list.append(li);
     });
+    makeEditFunctional()
+}
+
+function makeEditFunctional() {
+    const tasks = Array.from(document.querySelectorAll('#todoList li'))
+
+    for (let i = 0; i < tasks.length; i++) {
+        const edit = tasks[i].querySelector('button')
+        const taskToEdit = todoItems[i]
+        edit.addEventListener('click', () => editItem(taskToEdit, i))
+    }
+}
+function editItem(task, i) {
+    let newTask = prompt('Edit your task: ')    // goal for a future update: avoid prompt(), add a popup or make a new edit form visible instead
+    if (newTask) {
+        task = newTask
+        todoItems[i].name = task
+        addToLocalStorage(todoItems)
+    }
 }
 
 function getFromLocalStorage() {
