@@ -50,10 +50,10 @@ function makeEditFunctional() {
     for (let i = 0; i < tasks.length; i++) {
         const edit = tasks[i].querySelector('button')
         const taskToEdit = todoItems[i]
-        edit.addEventListener('click', () => editTask(taskToEdit, i))
+        edit.addEventListener('click', () => editItem(taskToEdit, i))
     }
 }
-function editTask(task, i) {
+function editItem(task, i) {
     let newTask = prompt('Edit your task: ')    // goal for a future update: avoid prompt(), add a popup or make a new edit form visible instead
     if (newTask) {
         task = newTask
