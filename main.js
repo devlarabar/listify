@@ -3,6 +3,8 @@ const input = document.querySelector('#todoInput')
 const list = document.querySelector('#todoList');
 let todoItems = []
 const editButton = `<button class="editButton">edit</button>`
+const clearButton = document.querySelector('#clearTasks') // Clear Completed Tasks button
+
 
 form.addEventListener('submit', event => {
     event.preventDefault();  //prevents page from refreshing on enter
@@ -50,6 +52,7 @@ function renderItems(todoItems) {
         });
     });
     makeEditFunctional()
+    checkIfListEmpty()
 }
 
 function makeEditFunctional() {
@@ -90,8 +93,25 @@ getFromLocalStorage(); //initializes on page refresh
 
 
 
+// Function that checks if there are any items in the list and, if not, hides the clear button for better UX.
+function checkIfListEmpty() {
+    if (todoItems.length == 0) {
+        clearButton.classList.add('hidden')
+    } else {
+        clearButton.classList.remove('hidden')
+    }
+}
 
-
+// Event listener to clear all completed tasks
+clearButton.addEventListener('click', clearCompletedTasks)
+// Clear all completed tasks
+function clearCompletedTasks() {
+    const reference = localStorage.getItem('todoItemsReference');
+    todoItems = JSON.parse(reference);
+    let completedTasks = todoItems.filter((item, i) => !item.completed)
+    todoItems = completedTasks
+    addToLocalStorage(todoItems)
+}
 
 
 
@@ -107,10 +127,10 @@ function updateCheckedItem(item){
 
     if(item.target.checked){
         checkedItem.completed = true
-        console.log(`${checkedItem.name} updated to completed`)
+        // console.log(`${checkedItem.name} updated to completed`)
     } else {
         checkedItem.completed = false
-        console.log(`${checkedItem.name} updated to not completed`)
+        // console.log(`${checkedItem.name} updated to not completed`)
     }
     addToLocalStorage(todoItems)
 }
