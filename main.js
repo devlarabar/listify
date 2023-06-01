@@ -50,3 +50,32 @@ function getFromLocalStorage() {
   }
 getFromLocalStorage(); //initializes on page refresh
 
+
+
+
+
+
+
+
+// Event listener waiting for checked items
+list.addEventListener("change", (item) =>{ updateCheckedItem(item) })
+
+
+
+// Updated the checkbox checked status for the clicked item
+function updateCheckedItem(item){
+    const checkedItemID = Number(item.target.parentElement.getAttribute('data-key'))
+    const checkedItem = todoItems.find( item => item.id === checkedItemID)
+
+    if(item.target.checked){
+        checkedItem.completed = true
+        console.log(`${checkedItem.name} updated to completed`)
+    } else {
+        checkedItem.completed = false
+        console.log(`${checkedItem.name} updated to not completed`)
+    }
+    addToLocalStorage(todoItems)
+}
+
+
+
