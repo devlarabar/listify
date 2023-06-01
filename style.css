@@ -27,7 +27,9 @@ ul {
 /* marking the parent li based on :has works in all browsers except Firefox right now https://caniuse.com/css-has */
 li:has( > input:checked) {
     color: rgba(169,169,169,1);
-=======
+}
+
+/******** Edit Button ********/
 .editButton {
     background: none;
     border: 0;
@@ -39,4 +41,17 @@ li:has( > input:checked) {
 .editButton:before {
     content: '-';
     margin-right: 5px;
+}
+/******** Delete Button ********/
+.delete-Btn {
+    position: relative;
+    top: 1px;
+    font-size: 1.7rem;
+    color: #CC3333;
+    border: none;
+    background: #fff;
+}
+.delete-Btn:hover {
+    background: #edeef0;
+    cursor: pointer;
 }

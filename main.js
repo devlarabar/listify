@@ -40,6 +40,14 @@ function renderItems(todoItems) {
             ${editButton}
         `;
         list.append(li);
+        // add delete button to item
+        const delBtn = document.createElement('button');
+        delBtn.innerHTML = '&times;';
+        delBtn.classList.add('delete-Btn')
+        li.appendChild(delBtn);
+        delBtn.addEventListener('click', () => {
+            deleteItem(li.getAttribute('data-key'));
+        });
     });
     makeEditFunctional()
 }
@@ -60,6 +68,15 @@ function editItem(task, i) {
         todoItems[i].name = task
         addToLocalStorage(todoItems)
     }
+}
+
+// function to delete single todo item
+function deleteItem(id) {
+    const numID = Number(id);
+    todoItems = todoItems.filter(item => item.id !== numID); //remove todo item from todoItems array
+    const li = document.querySelector(`li[data-key="${numID}"]`);
+    li.remove(); //remove todo item from page rendering
+    addToLocalStorage(todoItems); //update localStorage
 }
 
 function getFromLocalStorage() {
