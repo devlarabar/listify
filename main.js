@@ -107,10 +107,8 @@ function updateCheckedItem(item){
 
     if(item.target.checked){
         checkedItem.completed = true
-        console.log(`${checkedItem.name} updated to completed`)
     } else {
         checkedItem.completed = false
-        console.log(`${checkedItem.name} updated to not completed`)
     }
     addToLocalStorage(todoItems)
 }
