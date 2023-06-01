@@ -24,6 +24,10 @@ ul {
     padding: 20px 0;
 }
 
+/* marking the parent li based on :has works in all browsers except Firefox right now https://caniuse.com/css-has */
+li:has( > input:checked) {
+    color: rgba(169,169,169,1);
+=======
 .editButton {
     background: none;
     border: 0;
