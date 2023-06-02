@@ -108,8 +108,8 @@ clearButton.addEventListener('click', clearCompletedTasks)
 function clearCompletedTasks() {
     const reference = localStorage.getItem('todoItemsReference');
     todoItems = JSON.parse(reference);
-    let completedTasks = todoItems.filter((item, i) => !item.completed)
-    todoItems = completedTasks
+    let unfinishedTasks = todoItems.filter((item, i) => !item.completed)
+    todoItems = unfinishedTasks
     addToLocalStorage(todoItems)
 }
 
