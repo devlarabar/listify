@@ -55,3 +55,8 @@ li:has( > input:checked) {
     background: #edeef0;
     cursor: pointer;
 }
+
+/******** Clear Button ********/
+.hidden {
+    display: none;
+}
